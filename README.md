@@ -209,7 +209,8 @@ occupulse/
 ├── app.py                     ← Flask server + serial reader thread
 ├── firebase_config.py         ← Firebase Admin SDK integration
 ├── requirements.txt           ← Python dependencies
-└── serviceAccountKey.json     ← 🔑 Your Firebase key (not committed)
+├── .gitignore                 ← Keeps secrets out of version control
+└── serviceAccountKey.json     ← 🔒 NOT included — you generate this locally (see Setup)
 ```
 
 <br/>
@@ -234,6 +235,13 @@ occupulse/
 3. Enable **Realtime Database** → Start in **test mode**
 4. Go to **Project Settings → Service Accounts → Generate new private key**
 5. Save the downloaded file as `serviceAccountKey.json` in the project root
+
+> ⚠️ **Security Warning:** `serviceAccountKey.json` contains your private Firebase credentials.
+> **Never commit it to Git.** Add it to `.gitignore` immediately:
+> ```
+> echo "serviceAccountKey.json" >> .gitignore
+> ```
+
 6. Open `firebase_config.py` and update:
 
 ```python
@@ -421,7 +429,7 @@ int ENTRY_TIMEOUT  = 3000;  // ms window for exit detection
 | `SerialException: could not open port` | Check `SERIAL_PORT` in `app.py`, ensure Arduino is plugged in |
 | Dashboard shows `● DISCONNECTED` | Serial thread retries every 5s automatically; check cable |
 | Count never increments | Ensure sensor is within ~50cm of doorway; check TRIG/ECHO wiring |
-| Firebase errors on startup | Verify `serviceAccountKey.json` exists and `databaseURL` is correct |
+| Firebase errors on startup | Verify `serviceAccountKey.json` is present **locally** (never commit it) and `databaseURL` in `firebase_config.py` is correct |
 | Count goes negative | Normal edge case; the reset button restores to zero |
 | Buzzer won't stop | Hall reached max capacity; reduce count or press Reset |
 
