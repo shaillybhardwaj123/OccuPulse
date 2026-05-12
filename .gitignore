@@ -1,0 +1,35 @@
+# ─── Firebase Secret ──────────────────────────────────────────────────────────
+# NEVER commit this file — it contains your private Firebase credentials
+serviceAccountKey.json
+*.json.key
+
+# ─── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.env
+.venv
+
+# ─── Environment Variables ────────────────────────────────────────────────────
+.env
+.env.local
+.env.production
+
+# ─── OS Junk ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── IDE / Editor ─────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ─── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+logs/
